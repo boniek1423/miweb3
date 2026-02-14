@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Mi E-commerce</title>
+</head>
+<body>
+    <h1>Mis Productos</h1>
+    <div id="lista-productos"></div>
+
+    <script>
+        async function cargarProductos() {
+            const res = await fetch('/api/productos');
+            const data = await res.json();
+            const div = document.getElementById('lista-productos');
+            
+            data.productos.forEach(p => {
+                div.innerHTML += `<p>${p.nombre} - $${p.precio}</p>`;
+            });
+        }
+        cargarProductos();
+    </script>
+</body>
+</html>
